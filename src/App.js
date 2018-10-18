@@ -31,7 +31,7 @@ class App extends Component {
     this.handleTodoRemoveClick=this.handleTodoRemoveClick.bind(this);
     this.getCompletedCount = this.getCompletedCount.bind(this);
     this.getItem = this.getItem.bind(this);
-    this.getOllItem = this.getOllItem.bind(this);
+    this.getAllItem = this.getAllItem.bind(this);
   }
 
   onChangeInputText(inputValue){
@@ -95,9 +95,9 @@ class App extends Component {
     })
   }
 
-  getOllItem(){
+  getAllItem(){
     this.setState({
-      todos: JSON.parse(localStorage.getItem('storag')),
+      todos: localStorage.getItem('storag')?JSON.parse(localStorage.getItem('storag'):[...this.state.todos]),
     });
   }
 
@@ -122,7 +122,7 @@ class App extends Component {
           <div>
             <button onClick={()=>this.getItem(false)}>Completed</button> 
             <button onClick={()=>this.getItem(true)}>Not completed</button> 
-            <button onClick={()=>this.getOllItem()}> Oll </button>
+            <button onClick={()=>this.getAllItem()}> All </button>
           </div>
         </footer>
       </div>
